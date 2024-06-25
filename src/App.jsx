@@ -31,7 +31,7 @@ function App() {
     e.target.reset();
     setChatHistory(prevChat => [
       ...prevChat,
-      { id: uniqueId, isAi: true, value: '' }
+      { id: uniqueId, isAi: true, value: 'Loading...' }
     ]);
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
