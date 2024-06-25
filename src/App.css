@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;300;400;500;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Alegreya Sans", sans-serif;
+}
+
+body {
+  background: #868ecb;
+}
+
+h1{
+  text-align: center;
+  padding: 8px;
+  background-color: #868ecb;
+  color: #ecedfb;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+#logo{
+  float: left;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  background: #171821d4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34px;
+}
+
+#chat_container {
+  flex: 1;
+  width: 80%;
+  height: 100%;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
+  
+}
+
+#chat_container::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 15px;
+  background-color: #525464;
+  border-radius: 6px;
+}
+
+.ai {
+  background: #494b66;
+  border-radius: 6px;
+}
+
+.chat {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+
+  background: #6e52ed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai .profile {
+  background: #5ec7ad;
+}
+
+.profile img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.message {
+  flex: 1;
+  color: #e6e6f2;
+  font-size: 20px;
+  max-width: 100%;
+  overflow-x: scroll;
+  white-space: pre-wrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.message::-webkit-scrollbar {
+  display: none;
+}
+
+form {
+  width: 80%;
+  padding: 10px;
+  background: #454a54;
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  position: absolute;
+  bottom: 0;
+}
+
+input {
+  width: 100%;
+  color: #dde1e8;
+  font-size: 18px;
+  padding: 10px;
+  background: #454a54;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+input::placeholder {
+  color: #e8e8ed;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+form img {
+  width: 30px;
+  height: 30px;
+}
