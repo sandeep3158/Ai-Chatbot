@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import botIcon from './assets/bot.svg';
 import userIcon from './assets/user.svg';
@@ -6,21 +6,22 @@ import sendIcon from './assets/send.svg';
 import './App.css'
 
 function App() {
-  const [chatHistory, setChatHistory] = useState([]);
-  console.log('chatHistory is', chatHistory);
-  const [isLoading, setIsLoading] = useState(false);
+  const [chatHistory, setChatHistory] = useState(() => {
+    const savedData = sessionStorage.getItem('content');
+    return savedData ? JSON.parse(savedData) : [];
+  });
 
+  // Effect to update sessionStorage when chatHistory changes
+  useEffect(() => {
+    sessionStorage.setItem('content', JSON.stringify(chatHistory));
+  }, [chatHistory]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const API_KEY = import.meta.env.VITE_API_KEY;
-    console.log('Key is => ', API_KEY);
     const genAI = new GoogleGenerativeAI(API_KEY);
 
-    setIsLoading(true);
-
     const data = new FormData(e.target);
-    console.log('data =>', data);
     const prompt = data.get('prompt');
     const uniqueId = generateUniqueId();
 
@@ -64,8 +65,6 @@ function App() {
         return updatedChat;
       });
       alert(error.message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -94,14 +93,14 @@ function App() {
 
   return (
     <div id="container">
-      <h1> <i class="fas fa-robot"> </i>  My Ai ChatBot App</h1>
+      <h1> <i className="fas fa-robot"> </i>  My Ai ChatBot App</h1>
       <div id="chat_container" className="chat-container">
         {renderChatHistory()}
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="prompt" placeholder='Ask Me...' />
-          <button type="submit"><img src={sendIcon}/></button>
-        </form>
       </div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="prompt" placeholder='Ask Me...' />
+        <button type="submit"><img src={sendIcon} /></button>
+      </form>
     </div>
   );
 };
